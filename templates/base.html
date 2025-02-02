@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% csrf_token %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>POWF</title>
+        <script src="https://unpkg.com/mithril/mithril.js"></script>
+    </head>
+    <body>
+        {% block index %}
+        {% endblock index %}
+        {% block lobbylist %}
+        {% endblock lobbylist %}
+        {% block pokergame %}
+        {% endblock pokergame %}
+    </body>
+</html>

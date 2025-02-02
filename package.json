@@ -1,0 +1,13 @@
+{
+  "type": "module",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "node build.js --dev"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0"
+  },
+  "dependencies": {
+    "jsdom": "^26.0.0"
+  }
+}

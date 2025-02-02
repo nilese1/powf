@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% load static %}
+{% block pokergame %}
+    <script type="module" src="{% static 'game/js/index.js' %}"></script>
+    <link href="/static/game/css/style.css" rel="stylesheet">
+    <div id="app"></div>
+{% endblock pokergame %}

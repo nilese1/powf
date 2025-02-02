@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+{% block lobbylist %}
+{{ lobby_id|json_script:"lobby-id" }}
+
+        <div id="user-table">
+            <table>
+                <tr>
+                    <th>Username</th>
+                    <th>Chips</th>
+                    <th>Is Host</th>
+                </tr>
+            <tr>
+                <td>Getting lobby info...</td>
+            </tr>
+            </table>
+        </div>
+        <script src="{% static 'lobby/js/lobby.js' %}"></script>
+        
+{% endblock lobbylist %}

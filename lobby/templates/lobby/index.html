@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% block index %}
+    {% if lobby_list %}
+        <table>
+            <tr>
+                <th>Lobby Name</th>
+                <th>Start Time</th>
+                <th>Capacity</th>
+                <th>Join</th>
+            </tr>
+            <ul>
+                {% for lobby in lobby_list %}
+                    <tr>
+                        <td>{{ lobby.lobby_name }}</td>
+                        <td>{{ lobby.start_date|timesince }}</td>
+                        <td>({{ lobby.pokergame.playeringame_set.count }}/{{ lobby.pokergame.max_players }})</td>
+                        <td>
+                            <a href="{% url 'lobby:lobby' lobby.pk %}">
+                                <button type="text" id="joinbutton">join</button>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </ul>
+        </table>
+    {% else %}
+        <p>No lobbies are available.</p>
+    {% endif %}
+    <form action="{% url 'lobby:create_lobby' %}" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Create Lobby">
+    </form>
+{% for message in messages %}
+    
+    <div class="alert alert-success">
+        <a class="close" href="#" data-dismiss="alert">×</a>
+           {{ message }}
+    </div>
+
+{% endfor %}
+{% endblock index %}

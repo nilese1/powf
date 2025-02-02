@@ -1,0 +1,6 @@
+[submodule "Django-registration-and-login-system"]
+	path = Django-registration-and-login-system
+	url = https://github.com/earthcomfy/Django-registration-and-login-system.git
+[submodule "powf-mega-secrets"]
+	path = powf-mega-secrets
+	url = https://github.com/nilese1/powf-mega-secrets.git
