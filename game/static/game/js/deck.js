@@ -20,6 +20,7 @@ export class Deck {
     }
   }
 
+  // Fischer-Yates shuffle
   shuffle() {
     for (let i = this.cards.length - 1; i >= 0; i--) {
       let randomIndex = Math.floor(Math.random() * i);
@@ -31,7 +32,7 @@ export class Deck {
   }
 
   // For the purposes of add and draw, the deck functions like a stack
-  // using FIFO
+  // using LIFO
   addCard(rank, suite, set, isHidden) {
     let cardToAdd = {
       rank: rank,

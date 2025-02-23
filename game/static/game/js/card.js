@@ -62,6 +62,7 @@ export const Card = {
     return m(
       ".card",
       {
+        // Debug
         onclick: () => {
           Card.flipCard(vnode);
         },
