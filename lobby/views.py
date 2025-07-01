@@ -1,8 +1,5 @@
 from typing import final, override
 
-from django.contrib.auth.models import AbstractUser, AnonymousUser, User
-from django.core.exceptions import ValidationError
-from django.db import IntegrityError
 from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -12,14 +9,15 @@ from game.models import PlayerInGame, PokerGame
 from lobby.forms import LobbyForm
 from .models import Lobby
 
-from django.views.generic import ListView, TemplateView
+from django.views.generic import ListView
 from django.utils import timezone
 from django.db.models import F, Count
 
 
 def is_lobby_full(lobby: Lobby) -> bool:
     game: PokerGame = PokerGame.objects.get(id=lobby.pokergame.pk)
-    is_full = game.max_players > PlayerInGame.objects.filter(game_id=game).count()
+    is_full = game.max_players > PlayerInGame.objects.filter(
+        game_id=game).count()
 
     return is_full
 
@@ -54,10 +52,7 @@ def lobby_view(request: HttpRequest, pk: int) -> HttpResponse:
     lobby: Lobby = Lobby.objects.get(id=pk)
     context["lobby_id"] = lobby_id
 
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("authentication:login"))
-
-    elif not lobby.is_lobby_recent() or not lobby.is_active:
+    if not lobby.is_lobby_recent() or not lobby.is_active:
         messages.error(request, "Lobby is expired or invalid")
         return HttpResponseRedirect(reverse("lobby:index"))
 

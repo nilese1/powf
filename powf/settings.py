@@ -11,38 +11,28 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 import django_stubs_ext
+from dotenv import load_dotenv
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+load_dotenv()
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
+SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-key")
 
-SECRET_KEY_PATH = Path("./powf-mega-secrets/secret_key.txt")
+DEBUG = os.environ.get("DEBUG", True)
+TEMPLATE_DEBUG = os.environ.get("TEMPLATE_DEBUG", True)
 
-# SECURITY WARNING: keep the secret key used in production secret!
-with open(SECRET_KEY_PATH) as f:
-    SECRET_KEY = f.readline()
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-TEMPLATE_DEBUG = True
-
+# WARNING: change 4 prod
 ALLOWED_HOSTS = []
 
 # Required settings for login
-SITE_TITLE = "site-title"  # title of your site
+SITE_TITLE = "powf"  # title of your site
+
 LOGIN_URL = "/authentication/"
-EMAIL_HOST = "email-host"  # e.g. 'smtp-mail.outlook.com'
-EMAIL_PORT = 587  # e.g. 587
-EMAIL_HOST_USER = "email-address"
-EMAIL_HOST_PASSWORD = "email password"
-EMAIL_USE_TLS = True
-AUTHENTICATION_DEBUG = True  # True or False (use False in production)
-VERIFICATION_CODE_VALIDITY_IN_MINUTES = 30  # range of [1, 60] only
+LOGIN_REDIRECT_URL = "/"
 
 django_stubs_ext.monkeypatch(
     extra_classes=[],
@@ -56,13 +46,13 @@ INSTALLED_APPS = [
     "game",
     "lobby",
     "landing",
+    "authentication",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "authentication",
 ]
 
 ASGI_APPLICATION = "powf.routing.application"
@@ -110,9 +100,6 @@ TEMPLATES = [
 WSGI_APPLICATION = "powf.wsgi.application"
 
 
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -120,9 +107,6 @@ DATABASES = {
     }
 }
 
-
-# Password validation
-# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -145,7 +129,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "EST"
+TIME_ZONE = os.environ.get("TIME_ZONE", "EST")
 
 USE_I18N = True
 

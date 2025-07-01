@@ -1,6 +1,8 @@
 import { Card } from "./card.js";
 import { Deck } from "./deck.js";
+import { Cards } from "./cards.js";
 import { Player } from "./player.js";
+import { Board } from "./board.js";
 
 // const thisCard = {
 //   rank: "2",
@@ -12,12 +14,7 @@ import { Player } from "./player.js";
 export const App = () => {
   return {
     view: () => {
-      // bad code for debugging
-      let thisDeck = new Deck();
-
-      let player = { cards: [thisDeck.draw(), thisDeck.draw()] };
-
-      return m(Player, player);
+      return m(Board, { numPlayers: 3 });
     },
   };
 };

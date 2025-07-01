@@ -1,7 +1,7 @@
 import { Card, validCardRanks, validCardSuites } from "./card.js";
 
 export class Deck {
-  constructor(numberOfDecks = 1, set = "black-cards") {
+  constructor(numberOfDecks = 1, set = "standard") {
     this.cards = [];
     this.set = set;
 

@@ -4,10 +4,15 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>POWF</title>
+        <title>
+            {% block title %}{% endblock %}
+        </title>
         <script src="https://unpkg.com/mithril/mithril.js"></script>
     </head>
     <body>
+        {% block content %}
+        
+        {% endblock content %}
         {% block index %}
         {% endblock index %}
         {% block lobbylist %}
